@@ -1,43 +1,1000 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BharatVerse – Explore India’s Culture</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+.navbar {
+  background-color: #800000;
+  color: #fffbe6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  font-family: 'Yatra One', cursive;
+}
+.verse-highlight {
+  color: #fbc531;
+  font-weight: bold;
+}
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+.navbar-links li a {
+  color: #fffbe6;
+  text-decoration: none;
+  font-size: 1.1rem;
+  position: relative;
+}
+
+.navbar-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fbc531;
+  transition: width 0.3s ease;
+}
+
+.navbar-links li a:hover::after {
+  width: 100%;
+}
+
+.navbar-links li a:hover {
+  color: #fbc531;
+}
+
+.navbar-auth {
+  display: flex;
+  gap: 12px;
+}
+
+.navbar-auth .btn {
+  padding: 6px 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.7);
+}
+.modal-content.fancy {
+  background: linear-gradient(135deg, #fff0e1, #ffefd5);
+  margin: 80px auto;
+  padding: 40px 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+  animation: fadeIn 0.4s ease-in-out;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #d35400;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.close:hover {
+  color: #a93226;
+}
+.fancy-btn {
+  background: linear-gradient(135deg, #ff6f00, #ff8f00);
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 111, 0, 0.5);
+}
+
+.fancy-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff8f00, #ff6f00);
+  box-shadow: 0 8px 20px rgba(255, 111, 0, 0.8);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fffef5;
+  padding: 30px 40px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.modal-content input {
+  width: 90%;
+  padding: 10px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #a04000;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #999;
+}
+.navbar-logo {
+  font-size: 1.8rem;
+  font-family: Poppins, sans-serif;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-links li a {
+  color: #fffbe6;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-family: Poppins, sans-serif;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.navbar-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fbc531;
+  transition: width 0.3s ease;
+}
+
+.navbar-links li a:hover::after {
+  width: 100%;
+}
+
+.navbar-links li a:hover {
+  color: #fbc531;
+}
+body {
+   font-family: system-ui;
+  background: url('ai-generated-old-paper-vintage-background-free-photo.webp') no-repeat center center fixed;
+  background-size: cover;
+  color: #4b2e2e; 
+}
+.about-section {
+  border-top: 2px solid #c49b63;
+  border-bottom: 2px solid #c49b63;
+  background-color: rgba(227, 211, 211, 0.8);
+  padding: 60px 20px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+.about-section h2 {
+  font-size: 2.5rem;
+  font-family: Georgia, serif;
+  color: #b33939;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px #e59d6a;
+}
+.about-section p {
+  font-size: 1.3rem;
+font-family: system-ui;
+  text-shadow: 1px 1px 3px rgba(198, 207, 19, 0.2);
+  color: #46020a;
+  line-height: 2.9;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+@media (max-width: 991px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.service-card {
+  background: rgba(227, 211, 211, 0.8);
+  border: 2px solid #d4a373;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 4px 6px 14px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 280px;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.15);
+  background-color: #fff8e1;
+}
+.service-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #7c2d12;
+  text-shadow: 1px 1px #f2dec4;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  border-bottom: 1px solid #deb887;
+  padding-bottom: 5px;
+}
+.service-card p {
+  font-size: 0.95rem;
+  font-family: system-ui;
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+.state-section {
+  padding: 60px 20px;
+   padding-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+.state-section::before {
+  content: '';
+  position:relative;
+  inset: 0;
+  background-color: rgba(230, 243, 138, 0.8); /* translucent overlay */
+  z-index: -1;
+      font-family: Poppins, sans-serif;     
+}
+.card img {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.section {
+  padding: 50px 20px;
+  /* max-width: 1200px;
+  margin: auto; */
+      font-family: Poppins, sans-serif;
+  text-align: center;
+  
+}
+.state-section {
+  /* background-color: rgba(126, 128, 114, 0.8); */
+  position: relative;
+  padding: 60px 20px;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #2f3640;
+font-family: Georgia, serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.state-grid {
+  display: flex;
+   padding: 0 20px;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      font-family: Poppins, sans-serif;
+}
+.card {
+  background: rgb(237, 227, 179);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 280px;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card h3 {
+  font-size: 1.4rem;
+  color: #3d160c;
+  margin: 12px 0 5px;
+  font-family: Poppins, sans-serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.card p {
+  font-size: 0.95rem;
+ font-family: system-ui;
+  padding: 0 15px 20px;
+  color: #555;
+}
+.more-states-btn-container {
+  text-align: center;
+  margin-top: 30px;
+}
+.more-states-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #f39c12, #d35400);
+  color: #fff;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.more-states-btn::after {
+  content: ' →';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: right 0.3s ease;
+}
+
+.more-states-btn:hover {
+  background: linear-gradient(135deg, #e67e22, #a04000);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+}
+
+.more-states-btn:hover::after {
+  right: 10px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  justify-items: center;
+  align-items: start;
+  margin-top: 30px;
+}
+
+@media (max-width: 1024px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+.more-states-btn-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .more-states-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #f39c12, #d35400);
+      color: #fff;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .more-states-btn::after {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: right 0.3s ease;
+    }
+
+    .more-states-btn:hover {
+      background: linear-gradient(135deg, #e67e22, #a04000);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .more-states-btn:hover::after {
+      right: 10px;
+    }
+.feature-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  width: 100%;
+  max-width: 280px;
+  height: 250px; 
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.feature-box:hover {
+  transform: scale(1.03);
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-box h4 {
+  font-size: 1.3rem;
+  font-family: Georgia, serif;
+  color: #0097e6;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.feature-box p {
+  font-size: 0.95rem;
+  font-family: system-ui;
+  color: #666;
+}
+footer {
+  background-color: #2f3640;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 50px;
+  font-size: 0.95rem;
+  font-family: Poppins, sans-serif;
+}
+footer {
+  background-color: #2e1d1d;
+  color: #fffbe6;
+  padding: 40px 20px 20px;
+  font-family: 'Mukta', sans-serif;
+  font-size: 0.95rem;
+  border-top: 4px double #c49b63;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1 1 250px;
+}
+
+.footer-about h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #fbc531;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #00a8ff;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #fffbe6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fbc531;
+}
+
+.footer-contact p {
+  margin-bottom: 8px;
+}
+
+.footer-contact a {
+  color: #fbc531;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 15px;
+  color: #ccc;
+}
+
+footer {
+  background-color: #2e1d1d;
+  color: #fffbe6;
+  padding: 40px 20px 20px;
+  font-family: 'Mukta', sans-serif;
+  font-size: 0.95rem;
+  border-top: 4px double #c49b63;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+}
+
+.footer-about, .footer-links, .footer-contact, .footer-newsletter {
+  flex: 1 1 250px;
+}
+
+.footer-about h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #fbc531;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  font-size: 1.1rem;
+  margin-bottom : 10px;
+  color: #00a8ff;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a,
+.footer-contact a {
+  color: #fffbe6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fbc531;
+}
+
+.footer-contact p {
+  margin-bottom: 8px;
+}
+
+.footer-social {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.footer-social a {
+  color: #fbc531;
+  font-size: 1.4rem;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #00a8ff;
+}
+
+.footer-top {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.footer-top button {
+  background: #c49b63;
+  color: #2e1d1d;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 15px;
+  color: #ccc;
+}
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@keyframes flicker {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.3);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.5);
+    opacity: 0.85;
+  }
+}
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #25d366;
+  color: white;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: flicker 2s infinite;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-button i {
+  font-size: 20px;
+}
+.whatsapp-button:hover {
+  transform: scale(1.05);
+}
+html {
+  scroll-behavior: smooth;
+}
+.slide-in {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+        transition: all 1s ease-in-out;
+        max-width: 500px;
+        margin: 150px auto;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        filter: blur(5px);
+        pointer-events: none;
+      }
+
+      .slide-in.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+        pointer-events: auto;
+      }
+
+      img {
+        width: 100%;
+        border-radius: 20px;
+        display: block;
+      }
+</style>
+
+<nav  class="navbar">
+  <div class="navbar-logo">Bharat<span class="verse-highlight">Verse</span></div>
+  <ul class="navbar-links">
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#services">Our Services</a></li>
+    <li><a href="#states">States</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="auth-buttons">
+  <button class="fancy-btn" onclick="toggleModal('signupModal')">Sign Up</button>
+  <button class="fancy-btn" onclick="toggleModal('signinModal')">Sign In</button>
+  <button class="fancy-btn" onclick="toggleModal('subscribeModal')">Subscribe</button>
+</div>
+</nav>
+<body>
+<section id="about" class="section about-section">
+  <h2>About Us</h2>
+  <p>
+    BharatVerse is a powerful initiative that blends technology with patriotism, culture, and commerce to create a one-of-a-kind digital platform. It is designed to showcase the rich cultural diversity of India by giving every state a dedicated space to share its art, cuisine, traditions, stories, and handcrafts with people from around the globe.
+Unlike conventional e-commerce platforms, BharatVerse is not just about buying and selling—it is about connecting, learning, celebrating, and loving the soul of India. Users can explore state-wise virtual markets, learn folk dances and recipes directly from local artists, support rural artisans, and participate in nationwide virtual festivals that unite Indians everywhere.
+At a time when global cultures are blending and local traditions are at risk of fading, BharatVerse aims to spark a digital cultural revival, inspire national pride, and bring people together through shared heritage.  
+  </p>
+  <p>
+    Our mission is to empower local artisans, connect global audiences, and foster cultural pride through digital celebration and commerce.
+  </p>
+</section>
+<section id="services" class="section services-section">
+  <h2>Our Services</h2>
+  <p>
+    Explore how BharatVerse brings Indian culture alive through its diverse digital offerings.
+  </p>
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>State-Wise Cultural Marketplace</h3>
+      <p>Each Indian state has its own store page showcasing handicrafts, food, and festival gift boxes. <br><strong>Purpose:</strong> Support local artisans and regional pride.</p>
+    </div>
+    <div class="service-card">
+      <h3>Cultural Learning Experiences</h3>
+      <p>Learn from locals through folk dance, recipes, and language workshops.<br><strong>Purpose:</strong> Preserve living traditions through education.</p>
+    </div>
+    <div class="service-card">
+      <h3>Global Cultural Sharing Space</h3>
+      <p>Share festival moments, traditional attire photos, and love for India from anywhere.<br><strong>Purpose:</strong> Connect diaspora & global fans of Indian culture.</p>
+    </div>
+    <div class="service-card">
+      <h3>National Festival Celebrations</h3>
+      <p>Join live virtual events with performances and patriotic art uploads.<br><strong>Purpose:</strong> Celebrate unity and national spirit together.</p>
+    </div>
+    <div class="service-card">
+      <h3>“Adopt a Culture” Subscription </h3>
+      <p>Monthly box with snacks, crafts, flashcards, and traditions to learn.<br><strong>Purpose:</strong> Bring cultural experience right to your doorstep.</p>
+    </div>
+    <div class="service-card">
+      <h3>Support Local Artisan Stories</h3>
+      <p>Each product tells the artisan’s story and offers direct support.<br><strong>Purpose:</strong> Empower Indian creators and showcase real lives.</p>
+    </div>
+    <div class="service-card">
+      <h3>Gamified Cultural Engagement</h3>
+      <p>Earn badges for exploring, learning, and celebrating.<br><strong>Purpose:</strong> Make learning about India fun and rewarding.</p>
+    </div>
+    <div class="service-card">
+      <h3>Multilingual & Accessible Design</h3>
+      <p>Multiple languages, subtitles, and text-to-speech support.<br><strong>Purpose:</strong> Include every Indian voice and user.</p>
+    </div>
+    <div class="service-card">
+      <h3>Verified Commerce & Buying</h3>
+      <p>Only trusted sellers, fair profits, and eco-friendly packaging.<br><strong>Purpose:</strong> Promote honest, responsible e-commerce.</p>
+    </div>
+  </div>
+</section>
+  <section id="states" class="section state-section">
+    <h2>Explore by State</h2>
+    <div class="state-grid">
+      <div class="card">
+        <img src="Uttar-Pradesh-photo-1.jpg" alt="Uttar-Pradesh">
+        
+        <h3>Uttar-Pradesh</h3>
+        <p>Banarasi sarees, Chikankari embroidery, Kathak dance, Awadhi cuisine.</p>
+      </div>
+      <div class="card">
+        <img src="360_F_105741750_6nKtSRdV6HI7vpgW1XNehf6d8I5RRITO.jpg" alt="Karnataka">
+        <h3>Karnataka</h3>
+        <p>Sandalwood, Carnatic music, Udupi cuisine, silk sarees.</p>
+      </div>
+      <div class="card">
+        <img src="istockphoto-175757833-612x612.jpg" alt="Rajasthan">
+        <h3>Rajasthan</h3>
+        <p>Block printing, Ghoomar dance, blue pottery, and desert hues.</p>
+      </div>
+    </div>
+     <div class="more-states-btn-container">
+  <h1 class="more-states-btn">Explore More States </h1>
+</div>
+  </section>
+<section id="features" class="section light">
+  <h2>Our Features</h2>
+  <div class="features">
+    <div class="feature-box">
+      <img src="Lathmar-holi.webp" alt="Learn Icon" class="feature-icon">
+      <h4> Learn & Celebrate</h4>
+      <p>Watch folk dances, cook traditional recipes, and join virtual festivals.</p>
+    </div>
+    <div class="feature-box">
+      <img src="mask-making_west-bengal_crafts_travel.webp" alt="Support Icon" class="feature-icon">
+      <h4> Support Artisans</h4>
+      <p>Buy handmade products and support local craftspeople directly.</p>
+    </div>
+    <div class="feature-box">
+      <img src="residents-of-india-celebrate-friendship-day-horizontal-banner-greeting-card-illustration-vector.webp" alt="Unity Icon" class="feature-icon">
+      <h4>Celebrate Unity</h4>
+      <p>Participate in national festivals with users across India & abroad and connect.</p>
+    </div>
+    <div class="feature-box">
+      <img src="Cups-300x300.webp" alt="Gamified Engagement" class="feature-icon">
+      <h4> Gamified</h4>
+      <p>
+        Earn badges and points for:<br>
+        • Exploring different states<br>
+        • Learning cultural skills<br>
+        • Joining virtual events
+      </p>
+    </div>
+  </div>
+</section>
+<footer id="contact">
+  <div class="footer-container">
+    <div class="footer-about">
+    <div class="navbar-logo">Bharat<span class="verse-highlight">Verse</span></div>
+      <p>A cultural bridge connecting India’s soul with the world through its crafts, stories, and festivals.</p>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>Email: <a href="mailto:support@bharatverse.in">support@bharatverse.in</a></p>
+      <p>Phone: +91 0123456789</p>
+      <p>Location: Uttar-Pradesh, India</p>
+    </div>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/kshshrma?igsh=MTNmY2k4cjkxb3R6MQ%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@kshshshrmaa?si=4EMQEvLBT1WazIYG"><i class="fab fa-youtube"></i></a>
+    <a href="https://in.linkedin.com"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-top">
+    <button onclick="scrollToTop()">⬆ Back to Top</button>
+  </div>
+  <div class="footer-bottom">
+    <p>Made with❤️for INDIA | जय हिन्द <br> &copy; 2025 BharatVerse. All rights reserved.</p>
+  </div>
+
+</footer>
+<a href="https://wa.me/917084812337" class="whatsapp-button" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp">
+  </i>
+</a>
+  <script src="script.js"></script>
+  <script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="toggleModal('signupModal')">&times;</span>
+    <h2>Sign Up</h2>
+    <input type="text" placeholder="Full Name" id="signup-name">
+    <input type="email" placeholder="Email" id="signup-email">
+    <input type="password" placeholder="Password" id="signup-password">
+    <button class="fancy-btn" onclick="signUp()">Register</button>
+  </div>
+</div>
+<div id="signinModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="toggleModal('signinModal')">&times;</span>
+    <h2>Sign In</h2>
+    <input type="email" placeholder="Email" id="signin-email">
+    <input type="password" placeholder="Password" id="signin-password">
+    <button class="fancy-btn" onclick="signIn()">Login</button>
+  </div>
+</div>
+<div id="subscribeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="toggleModal('subscribeModal')">&times;</span>
+    <h2>Subscribe Now</h2>
+    <input type="email" placeholder="Enter your email" id="subscribe-email">
+    <button class="fancy-btn" onclick="subscribePayment()">Pay ₹199</button>
+  </div>
+</div>
+<script src="index.js"></script>
+<script>
+console.log("BharatVerse loaded.");
+function toggleModal(id) {
+  const modal = document.getElementById(id);
+  modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+}
+
+function signUp() {
+  const name = document.getElementById('signup-name').value;
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+  alert(`Registered:\nName: ${name}\nEmail: ${email}`);
+}
+
+function signIn() {
+  const email = document.getElementById('signin-email').value;
+  const password = document.getElementById('signin-password').value;
+  alert(`Logged in as: ${email}`);
+}
+
+function subscribePayment() {
+  const email = document.getElementById('subscribe-email').value;
+  alert(`Initiating ₹199 payment for: ${email}`);
+}
+</script>
+</body>
 </html>
