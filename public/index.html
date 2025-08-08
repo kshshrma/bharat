@@ -6,6 +6,7 @@
   <title>BharatVerse – Explore India’s Culture</title>
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
 </head>
 <style>
 * {
@@ -242,6 +243,37 @@ body {
   background-size: cover;
   color: #4b2e2e; 
 }
+ .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(232, 73, 153, 0.1), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% {
+                left: 100%;
+            }
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
 .about-section {
   border-top: 2px solid #c49b63;
   border-bottom: 2px solid #c49b63;
@@ -250,6 +282,7 @@ body {
   margin: auto;
   text-align: center;
   position: relative;
+  
 }
 .about-section h2 {
   font-size: 2.5rem;
@@ -274,6 +307,7 @@ font-family: system-ui;
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
+  
 }
 @media (max-width: 991px) {
   .services-grid {
@@ -326,26 +360,31 @@ font-family: system-ui;
   content: '';
   position:relative;
   inset: 0;
-  background-color: rgba(230, 243, 138, 0.8); /* translucent overlay */
+  background-color: rgba(230, 243, 138, 0.8);
   z-index: -1;
       font-family: Poppins, sans-serif;     
+}
+.state-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+
 }
 .card img {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .section {
   padding: 50px 20px;
-  /* max-width: 1200px;
-  margin: auto; */
       font-family: Poppins, sans-serif;
   text-align: center;
   
 }
-.state-section {
-  /* background-color: rgba(126, 128, 114, 0.8); */
+/* .state-section {
+  
   position: relative;
   padding: 60px 20px;
-}
+} */
 
 .section h2 {
   font-size: 2rem;
@@ -356,11 +395,9 @@ font-family: Georgia, serif;
 }
 .state-grid {
   display: flex;
-   padding: 0 20px;
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       font-family: Poppins, sans-serif;
 }
 .card {
@@ -370,6 +407,7 @@ font-family: Georgia, serif;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 280px;
+  
 }
 .card:hover {
   transform: translateY(-8px);
@@ -378,15 +416,30 @@ font-family: Georgia, serif;
 .card img {
   width: 100%;
   height: 180px;
-  object-fit: cover;
+  object-fit:cover;
 }
-.card h3 {
+/* .card h3 {
   font-size: 1.4rem;
   color: #3d160c;
   margin: 12px 0 5px;
   font-family: Poppins, sans-serif;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
+} */
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color:#ecbb62;
+    color: rgb(17, 16, 16);
+    border:#c38585;
+    border-radius: 45px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #a65d09;
+  }
 .card p {
   font-size: 0.95rem;
  font-family: system-ui;
@@ -780,6 +833,14 @@ html {
         border-radius: 20px;
         display: block;
       }
+      .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .lazy-load.loaded {
+            opacity: 1;
+        }
 </style>
 
 <nav  class="navbar">
@@ -798,7 +859,10 @@ html {
 </div>
 </nav>
 <body>
+<div id="particles-js"></div>
 <section id="about" class="section about-section">
+
+
   <h2>About Us</h2>
   <p>
     BharatVerse is a powerful initiative that blends technology with patriotism, culture, and commerce to create a one-of-a-kind digital platform. It is designed to showcase the rich cultural diversity of India by giving every state a dedicated space to share its art, cuisine, traditions, stories, and handcrafts with people from around the globe.
@@ -814,40 +878,40 @@ At a time when global cultures are blending and local traditions are at risk of 
   <p>
     Explore how BharatVerse brings Indian culture alive through its diverse digital offerings.
   </p>
-  <div class="services-grid">
-    <div class="service-card">
+  <div class="services-grid shimmer">
+    <div class="service-card shimmer ">
       <h3>State-Wise Cultural Marketplace</h3>
       <p>Each Indian state has its own store page showcasing handicrafts, food, and festival gift boxes. <br><strong>Purpose:</strong> Support local artisans and regional pride.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card shimmer">
       <h3>Cultural Learning Experiences</h3>
       <p>Learn from locals through folk dance, recipes, and language workshops.<br><strong>Purpose:</strong> Preserve living traditions through education.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card shimmer">
       <h3>Global Cultural Sharing Space</h3>
       <p>Share festival moments, traditional attire photos, and love for India from anywhere.<br><strong>Purpose:</strong> Connect diaspora & global fans of Indian culture.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card shimmer">
       <h3>National Festival Celebrations</h3>
       <p>Join live virtual events with performances and patriotic art uploads.<br><strong>Purpose:</strong> Celebrate unity and national spirit together.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card shimmer">
       <h3>“Adopt a Culture” Subscription </h3>
       <p>Monthly box with snacks, crafts, flashcards, and traditions to learn.<br><strong>Purpose:</strong> Bring cultural experience right to your doorstep.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card shimmer">
       <h3>Support Local Artisan Stories</h3>
       <p>Each product tells the artisan’s story and offers direct support.<br><strong>Purpose:</strong> Empower Indian creators and showcase real lives.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card shimmer">
       <h3>Gamified Cultural Engagement</h3>
       <p>Earn badges for exploring, learning, and celebrating.<br><strong>Purpose:</strong> Make learning about India fun and rewarding.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card shimmer">
       <h3>Multilingual & Accessible Design</h3>
       <p>Multiple languages, subtitles, and text-to-speech support.<br><strong>Purpose:</strong> Include every Indian voice and user.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card shimmer">
       <h3>Verified Commerce & Buying</h3>
       <p>Only trusted sellers, fair profits, and eco-friendly packaging.<br><strong>Purpose:</strong> Promote honest, responsible e-commerce.</p>
     </div>
@@ -855,21 +919,21 @@ At a time when global cultures are blending and local traditions are at risk of 
 </section>
   <section id="states" class="section state-section">
     <h2>Explore by State</h2>
-    <div class="state-grid">
-      <div class="card">
+    <div class="state-grid shimmer">
+      <div class="card shimmer">
         <img src="Uttar-Pradesh-photo-1.jpg" alt="Uttar-Pradesh">
         
-        <h3>Uttar-Pradesh</h3>
+        <button onclick="location.href='1.html'">Uttar-Pradesh</button>
         <p>Banarasi sarees, Chikankari embroidery, Kathak dance, Awadhi cuisine.</p>
       </div>
-      <div class="card">
+      <div class="card shimmer">
         <img src="360_F_105741750_6nKtSRdV6HI7vpgW1XNehf6d8I5RRITO.jpg" alt="Karnataka">
-        <h3>Karnataka</h3>
+        <button onclick="location.href='1.html'">karnataka</button>
         <p>Sandalwood, Carnatic music, Udupi cuisine, silk sarees.</p>
       </div>
-      <div class="card">
+      <div class="card shimmer">
         <img src="istockphoto-175757833-612x612.jpg" alt="Rajasthan">
-        <h3>Rajasthan</h3>
+        <button onclick="location.href='1.html'">Rajasthan</button>
         <p>Block printing, Ghoomar dance, blue pottery, and desert hues.</p>
       </div>
     </div>
@@ -879,23 +943,23 @@ At a time when global cultures are blending and local traditions are at risk of 
   </section>
 <section id="features" class="section light">
   <h2>Our Features</h2>
-  <div class="features">
-    <div class="feature-box">
+  <div class="features shimmer">
+    <div class="feature-box shimmer">
       <img src="Lathmar-holi.webp" alt="Learn Icon" class="feature-icon">
       <h4> Learn & Celebrate</h4>
       <p>Watch folk dances, cook traditional recipes, and join virtual festivals.</p>
     </div>
-    <div class="feature-box">
+    <div class="feature-box shimmer">
       <img src="mask-making_west-bengal_crafts_travel.webp" alt="Support Icon" class="feature-icon">
       <h4> Support Artisans</h4>
       <p>Buy handmade products and support local craftspeople directly.</p>
     </div>
-    <div class="feature-box">
+    <div class="feature-box shimmer">
       <img src="residents-of-india-celebrate-friendship-day-horizontal-banner-greeting-card-illustration-vector.webp" alt="Unity Icon" class="feature-icon">
       <h4>Celebrate Unity</h4>
       <p>Participate in national festivals with users across India & abroad and connect.</p>
     </div>
-    <div class="feature-box">
+    <div class="feature-box shimmer">
       <img src="Cups-300x300.webp" alt="Gamified Engagement" class="feature-icon">
       <h4> Gamified</h4>
       <p>
@@ -938,6 +1002,7 @@ At a time when global cultures are blending and local traditions are at risk of 
   </i>
 </a>
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -995,6 +1060,146 @@ function subscribePayment() {
   const email = document.getElementById('subscribe-email').value;
   alert(`Initiating ₹199 payment for: ${email}`);
 }
-</script>
+document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#d4af37"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#d4af37",
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.5
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+          
+            const lazyLoadImages = document.querySelectorAll('.lazy-load');
+            
+            const lazyLoad = (target) => {
+                const io = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('loaded');
+                            observer.disconnect();
+                        }
+                    });
+                });
+                
+                io.observe(target);
+            };
+            
+            lazyLoadImages.forEach(lazyLoad);
+
+            const shimmerElements = document.querySelectorAll('.shimmer');
+            
+            const shimmerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.backgroundImage = 'none';
+                        shimmerObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            shimmerElements.forEach(el => {
+                shimmerObserver.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>
