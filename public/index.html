@@ -237,12 +237,12 @@ html {
 .navbar-links li a:hover {
   color: #fbc531;
 }
-body {
+/* body {
    font-family: system-ui;
   background: url('ai-generated-old-paper-vintage-background-free-photo.webp') no-repeat center center fixed;
   background-size: cover;
-  color: #4b2e2e; 
-}
+  color: #ed1b1b; 
+} */
  .shimmer {
             position: relative;
             overflow: hidden;
@@ -277,7 +277,7 @@ body {
 .about-section {
   border-top: 2px solid #c49b63;
   border-bottom: 2px solid #c49b63;
-  background-color: rgba(227, 211, 211, 0.8);
+  background-color: rgba(249, 206, 206, 0.8);
   padding: 60px 20px;
   margin: auto;
   text-align: center;
@@ -289,7 +289,7 @@ body {
   font-family: Georgia, serif;
   color: #b33939;
   margin-bottom: 20px;
-  text-shadow: 1px 1px #e59d6a;
+  text-shadow: 1px 1px #161615;
 }
 .about-section p {
   font-size: 1.3rem;
@@ -300,6 +300,37 @@ font-family: system-ui;
   margin-bottom: 15px;
   padding: 0 10px;
 }
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* overflow: hidden; */
+}
+#bgVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+.content {
+    position: relative;
+    color: white;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+h1 {
+    text-shadow: 1px 1px 3px rgba(198, 207, 19, 0.2);
+  color: #46020a;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -325,7 +356,7 @@ font-family: system-ui;
   border-radius: 12px;
   padding: 25px;
   box-shadow: 4px 6px 14px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  text-align: middle;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-height: 280px;
 }
@@ -380,19 +411,21 @@ font-family: system-ui;
   text-align: center;
   
 }
-/* .state-section {
-  
-  position: relative;
-  padding: 60px 20px;
-} */
-
 .section h2 {
   font-size: 2rem;
   margin-bottom: 40px;
-  color: #2f3640;
+  color: #fdf8f8;
 font-family: Georgia, serif;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 3px rgba(19, 18, 18, 0.3);
 }
+/* .highlight{
+    background: #f3971680;
+    color: rgb(19, 19, 19);                   
+    padding: 10px 15px;            
+    border-radius: 8px;              
+    display: inline-block;          
+} */
+
 .state-grid {
   display: flex;
   flex-wrap: wrap;
@@ -418,13 +451,6 @@ font-family: Georgia, serif;
   height: 180px;
   object-fit:cover;
 }
-/* .card h3 {
-  font-size: 1.4rem;
-  color: #3d160c;
-  margin: 12px 0 5px;
-  font-family: Poppins, sans-serif;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-} */
 button {
     padding: 12px 24px;
     font-size: 16px;
@@ -859,9 +885,12 @@ html {
 </div>
 </nav>
 <body>
+
 <div id="particles-js"></div>
 <section id="about" class="section about-section">
-
+<video autoplay muted loop id="bgVideo">
+        <source src="flagg.mp4" type="video/mp4">
+    </video>
 
   <h2>About Us</h2>
   <p>
@@ -874,10 +903,8 @@ At a time when global cultures are blending and local traditions are at risk of 
   </p>
 </section>
 <section id="services" class="section services-section">
-  <h2>Our Services</h2>
-  <p>
-    Explore how BharatVerse brings Indian culture alive through its diverse digital offerings.
-  </p>
+  <h2 class="highlight">Our Services</h2>
+  
   <div class="services-grid shimmer">
     <div class="service-card shimmer ">
       <h3>State-Wise Cultural Marketplace</h3>
@@ -918,7 +945,10 @@ At a time when global cultures are blending and local traditions are at risk of 
   </div>
 </section>
   <section id="states" class="section state-section">
-    <h2>Explore by State</h2>
+  <h2 class="highlight">
+    Explore by State
+</h2>
+
     <div class="state-grid shimmer">
       <div class="card shimmer">
         <img src="Uttar-Pradesh-photo-1.jpg" alt="Uttar-Pradesh">
@@ -942,7 +972,7 @@ At a time when global cultures are blending and local traditions are at risk of 
 </div>
   </section>
 <section id="features" class="section light">
-  <h2>Our Features</h2>
+  <h2 class=" highlight">Our Features</h2>
   <div class="features shimmer">
     <div class="feature-box shimmer">
       <img src="Lathmar-holi.webp" alt="Learn Icon" class="feature-icon">
@@ -1011,20 +1041,18 @@ At a time when global cultures are blending and local traditions are at risk of 
 <div id="signupModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="toggleModal('signupModal')">&times;</span>
+  
     <h2>Sign Up</h2>
-    <input type="text" placeholder="Full Name" id="signup-name">
-    <input type="email" placeholder="Email" id="signup-email">
-    <input type="password" placeholder="Password" id="signup-password">
-    <button class="fancy-btn" onclick="signUp()">Register</button>
+    <a href="signup.html" class="fancy-btn">Register</a>
   </div>
 </div>
+
 <div id="signinModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="toggleModal('signinModal')">&times;</span>
-    <h2>Sign In</h2>
-    <input type="email" placeholder="Email" id="signin-email">
-    <input type="password" placeholder="Password" id="signin-password">
-    <button class="fancy-btn" onclick="signIn()">Login</button>
+   <span class="close" onclick="toggleModal('signupModal')">&times;</span>
+  
+    <h2>Login</h2>
+    <a href="signup.html" class="fancy-btn">Register</a>
   </div>
 </div>
 <div id="subscribeModal" class="modal">

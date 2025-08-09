@@ -461,6 +461,7 @@ body::before {
     
             if (error) {
               errorDiv.textContent = 'Invalid email or password.';
+              console.error('Login error:',password );
             } else {
               showAlert();
               function showAlert() {
