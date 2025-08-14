@@ -65,9 +65,9 @@ body::before {
 .card {
       width: 100%;
       max-width: 400px;
-      background: rgb(0, 0, 0);
+      background: rgb(255, 255, 255);
       border-radius: 16px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
       padding: 30px;
       text-align: center;
     }
@@ -179,9 +179,9 @@ body::before {
             width: 100%;
             max-width: 400px;
             margin: 2rem auto;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(253, 253, 253, 0.8);
             border-radius: 16px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.919);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.919);
             padding: 30px;
             text-align: center;
         }
@@ -189,7 +189,7 @@ body::before {
         .card h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            color: #ffffff;
+            color: #000000;
         }
 
         .form-group {
@@ -200,7 +200,7 @@ body::before {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: #ffffff;
+            color: #000000;
         }
 
         .form-group input {
@@ -301,9 +301,14 @@ body::before {
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
       </div>
+      <label for="role">Account Type</label>
+  <select id="role" required>
+    <option value="">-- Select Role --</option>
+    <option value="user">User</option>
+    <option value="artisan">Artisan</option>
+  </select>
         <div id="error" class="error"></div>
       <button type="submit" class="button">Sign Up </button>
-   
           <a href="login.html" class="create-account">Log In Your Account</a>
         
         </form>
@@ -317,48 +322,58 @@ body::before {
         const supabase = createClient(supabaseUrl, supabaseKey);
       
         
-        document.getElementById('signupForm').addEventListener('submit', async function (event) {
-          event.preventDefault();
-      
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-          const confirmPassword = document.getElementById('confirmPassword').value;
-          const errorDiv = document.getElementById('error');
-      
-          errorDiv.textContent = '';
-      
-          if (!email || !password || !confirmPassword) {
-            errorDiv.textContent = 'Please fill in all fields.';
-            return;
-          }
-      
-          if (password !== confirmPassword) {
-            errorDiv.textContent = 'Passwords do not match.';
-            return;
-          }
-      
-          try {
-            const { data, error } = await supabase.auth.signUp({
-              email: email,
-              password: password,
-            });
-      
-            if (error) {
-              errorDiv.textContent = error.message || 'An error occurred. Please try again.';
-            } else {
-              alert('Signup successful! Please log in with your credentials.');
-              console.log('User data:', data);
-              console.log("pass",password)
-      
-        
-              // Redirect to login page
-              window.location.href = 'login.html';
-            }
-          } catch (err) {
-            errorDiv.textContent = 'An error occurred. Please try again later.';
-            console.error(err);
-          }
-        });
+       document.getElementById('signupForm').addEventListener('submit', async function (event) {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const role = document.getElementById('role').value;
+  const errorDiv = document.getElementById('error');
+
+  errorDiv.textContent = '';
+
+  if (!email || !password || !confirmPassword || !role) {
+    errorDiv.textContent = 'Please fill in all fields.';
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    errorDiv.textContent = 'Passwords do not match.';
+    return;
+  }
+
+  try {
+    // Create user in Supabase Auth
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
+
+    if (signUpError) {
+      errorDiv.textContent = signUpError.message || 'An error occurred. Please try again.';
+      return;
+    }
+
+    // Insert role into "profiles" table
+    const userId = signUpData.user.id;
+    const { error: insertError } = await supabase
+      .from('profiles')
+      .insert([{ id: userId, email: email, role: role }]);
+
+    if (insertError) {
+      console.error('Error inserting role:', insertError);
+    }
+
+    alert('Signup successful! Please log in with your credentials.');
+    window.location.href = 'login.html';
+
+  } catch (err) {
+    errorDiv.textContent = 'An error occurred. Please try again later.';
+    console.error(err);
+  }
+});
+
       </script>
       
 </body>

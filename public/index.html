@@ -18,8 +18,12 @@
 html {
   scroll-behavior: smooth;
 }
+ body {
+  height: 100%;       /* make sure the body fills the screen */
+  margin: 0;          /* remove default margins */
+}
 .navbar {
-  background-color: #800000;
+  background-color: #5d0808;
   color: #fffbe6;
   display: flex;
   justify-content: space-between;
@@ -28,8 +32,14 @@ html {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  font-family: 'Yatra One', cursive;
+  box-shadow: 0 3px 10px rgba(138, 31, 31, 0.2);
+  font-family: Poppins, sans-serif;
+  font-weight: bold;
+   position: fixed;
+  top: 0;
+  width: 100%;
+ height:11%;
+
 }
 .verse-highlight {
   color: #fbc531;
@@ -87,6 +97,44 @@ html {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease;
+}
+    .below-navbar {
+  border-top: 2px solid #c49b63;
+  border-bottom: 2px solid #c49b63;
+  background-color: rgba(249, 206, 206, 0.8);
+  padding: 60px 20px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  margin-top: 45px;
+  height: 100vh;              /* full screen height */
+  display: flex;
+  justify-content: center;    /* center horizontally */
+  align-items: center;  
+}
+.content{
+/* display: flex;
+  flex-direction: column;   /* stack heading & paragraph */
+  gap: 10px;  */
+  text-align: center; 
+}
+ .below-navbar h2 {
+  font-size: 2.5rem;
+  font-family: Georgia, serif;
+  color: #a10b0b;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px #161615;
+  
+}
+ .below-navbar p {
+ 
+  font-size: 1.3rem;
+font-family: system-ui;
+  text-shadow: 1px 1px 3px rgba(198, 207, 19, 0.2);
+  color: #46020a;
+  line-height: 2.9;
+  margin-bottom: 15px;
+  padding: 0 10px;
 }
 .modal {
   display: none;
@@ -237,12 +285,169 @@ html {
 .navbar-links li a:hover {
   color: #fbc531;
 }
-/* body {
-   font-family: system-ui;
-  background: url('ai-generated-old-paper-vintage-background-free-photo.webp') no-repeat center center fixed;
-  background-size: cover;
-  color: #ed1b1b; 
-} */
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.navbar-links li {
+  margin: 0 10px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.auth-buttons {
+  display: flex;
+  margin-left: 20px;
+}
+
+.fancy-btn {
+  margin: 0 5px;
+  padding: 8px 15px;
+  background: #ff9800;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+.hamburger {
+  display: none;
+  width: 30px;
+  height: 22px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transition: all 0.4s ease;
+}
+
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+.hamburger span:nth-child(2) {
+  top: 9px;
+}
+.hamburger span:nth-child(3) {
+  top: 18px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 9px;
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 9px;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transition: all 0.4s ease;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+.hamburger span:nth-child(2) {
+  top: 9px;
+}
+.hamburger span:nth-child(3) {
+  top: 18px;
+}
+
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 9px;
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 9px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    z-index: 1001;
+  }
+
+  .menu {
+    display: none;
+    flex-wrap: wrap;
+    background: #222;
+    padding: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+  }
+
+  .menu.show {
+    display: flex;
+  }
+  .navbar-links,
+  .auth-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .navbar-links li {
+    margin: 5px;
+  }
+
+  .auth-buttons {
+    margin-top: 5px;
+  }
+
+  .fancy-btn {
+    margin: 5px;
+  }
+}
+
  .shimmer {
             position: relative;
             overflow: hidden;
@@ -277,19 +482,21 @@ html {
 .about-section {
   border-top: 2px solid #c49b63;
   border-bottom: 2px solid #c49b63;
-  background-color: rgba(249, 206, 206, 0.8);
+  background-color: rgb(251, 178, 180);
   padding: 60px 20px;
   margin: auto;
   text-align: center;
   position: relative;
-  
+  margin-top: 45px;
+
 }
 .about-section h2 {
   font-size: 2.5rem;
   font-family: Georgia, serif;
-  color: #b33939;
+  color: #a10b0b;
   margin-bottom: 20px;
   text-shadow: 1px 1px #161615;
+  
 }
 .about-section p {
   font-size: 1.3rem;
@@ -418,13 +625,6 @@ h1 {
 font-family: Georgia, serif;
   text-shadow: 1px 1px 3px rgba(19, 18, 18, 0.3);
 }
-/* .highlight{
-    background: #f3971680;
-    color: rgb(19, 19, 19);                   
-    padding: 10px 15px;            
-    border-radius: 8px;              
-    display: inline-block;          
-} */
 
 .state-grid {
   display: flex;
@@ -567,6 +767,19 @@ button {
     .more-states-btn:hover::after {
       right: 10px;
     }
+    .animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: fadeSlide 1s forwards;
+}
+
+@keyframes fadeSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 .feature-box {
   background: #ffffff;
   border-radius: 12px;
@@ -867,44 +1080,93 @@ html {
         .lazy-load.loaded {
             opacity: 1;
         }
-</style>
+  .shimmer-text {
+  position: relative;
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow:
+    0 0 5px rgb(228, 23, 61),
+    0 0 10px rgb(237, 227, 28),
+    0 0 20px rgb(104, 6, 15),
+    0 0 40px rgb(243, 124, 12);
+  animation: shimmer 2s infinite linear;
+}
 
-<nav  class="navbar">
+@keyframes shimmer {
+  0% {
+    text-shadow:
+      0 0 5px rgb(186, 22, 25),
+      0 0 10px rgb(207, 48, 13),
+      0 0 20px rgb(201, 91, 23),
+      0 0 40px rgb(203, 236, 58);
+  }
+  50% {
+    text-shadow:
+      0 0 10px rgb(128, 6, 6),
+      0 0 20px rgb(220, 66, 39),
+      0 0 30px rgb(230, 45, 16),
+      0 0 50px rgb(219, 51, 17);
+  }
+  100% {
+    text-shadow:
+      0 0 5px rgb(214, 20, 198),
+      0 0 10px rgb(235, 239, 26),
+      0 0 20px rgb(229, 88, 22),
+      0 0 40px rgb(232, 91, 35);
+  }
+}
+</style>
+<nav class="navbar">
   <div class="navbar-logo">Bharat<span class="verse-highlight">Verse</span></div>
-  <ul class="navbar-links">
-    <li><a href="#about">About Us</a></li>
-    <li><a href="#services">Our Services</a></li>
-    <li><a href="#states">States</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="auth-buttons">
-  <button class="fancy-btn" onclick="toggleModal('signupModal')">Sign Up</button>
-  <button class="fancy-btn" onclick="toggleModal('signinModal')">Sign In</button>
-  <button class="fancy-btn" onclick="toggleModal('subscribeModal')">Subscribe</button>
-</div>
+  <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+  <span></span>
+  <span></span>
+  </div>
+  <div class="menu">
+    <ul class="navbar-links">
+      <li><a href="#about" onclick="closeMenu()">About Us</a></li>
+      <li><a href="#services" onclick="closeMenu()">Our Services</a></li>
+      <li><a href="#states" onclick="closeMenu()">States</a></li>
+      <li><a href="#features" onclick="closeMenu()">Features</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li> 
+    </ul>
+    <div class="auth-buttons">
+      <button class="fancy-btn" onclick="toggleModal('signupModal')">Sign Up</button>
+      <button class="fancy-btn" onclick="toggleModal('signinModal')">Sign In</button>
+      <button class="fancy-btn" onclick="toggleModal('subscribeModal')">Subscribe</button>
+    </div>
+  </div>
 </nav>
 <body>
-
 <div id="particles-js"></div>
+  <section class="below-navbar">
+  <div class="content">
+    <h1>Rediscover India, Digitally</h1>
+    <p>A digital gateway to explore India’s rich cultural heritage, blending traditions with e-commerce and learning experiences.</p>
+</div>
+  </section>
 <section id="about" class="section about-section">
 <video autoplay muted loop id="bgVideo">
         <source src="flagg.mp4" type="video/mp4">
     </video>
-
-  <h2>About Us</h2>
+    
+  <section id="fits" class="section light">
+  <span class="animate"><h2 class="shimmer-text">About Us</h2></span>
+</section>
   <p>
     BharatVerse is a powerful initiative that blends technology with patriotism, culture, and commerce to create a one-of-a-kind digital platform. It is designed to showcase the rich cultural diversity of India by giving every state a dedicated space to share its art, cuisine, traditions, stories, and handcrafts with people from around the globe.
 Unlike conventional e-commerce platforms, BharatVerse is not just about buying and selling—it is about connecting, learning, celebrating, and loving the soul of India. Users can explore state-wise virtual markets, learn folk dances and recipes directly from local artists, support rural artisans, and participate in nationwide virtual festivals that unite Indians everywhere.
 At a time when global cultures are blending and local traditions are at risk of fading, BharatVerse aims to spark a digital cultural revival, inspire national pride, and bring people together through shared heritage.  
-  </p>
-  <p>
     Our mission is to empower local artisans, connect global audiences, and foster cultural pride through digital celebration and commerce.
   </p>
 </section>
 <section id="services" class="section services-section">
-  <h2 class="highlight">Our Services</h2>
-  
+  <!-- <h2 class="highlight">Our Services</h2> -->
+<section id="abt" class="section light">
+  <span class="animate"><h2 class="shimmer-text">Our Services</h2></span>
+</section>
+
   <div class="services-grid shimmer">
     <div class="service-card shimmer ">
       <h3>State-Wise Cultural Marketplace</h3>
@@ -945,9 +1207,12 @@ At a time when global cultures are blending and local traditions are at risk of 
   </div>
 </section>
   <section id="states" class="section state-section">
-  <h2 class="highlight">
+  <!-- <h2 class="highlight">
     Explore by State
-</h2>
+</h2> -->
+<section id="benefits" class="section light">
+  <span class="animate"><h2 class="shimmer-text">Explore by State</h2></span>
+</section>
 
     <div class="state-grid shimmer">
       <div class="card shimmer">
@@ -972,7 +1237,7 @@ At a time when global cultures are blending and local traditions are at risk of 
 </div>
   </section>
 <section id="features" class="section light">
-  <h2 class=" highlight">Our Features</h2>
+  <span class="animate"><h2 class="shimmer-text">Our Features</h2></span>
   <div class="features shimmer">
     <div class="feature-box shimmer">
       <img src="Lathmar-holi.webp" alt="Learn Icon" class="feature-icon">
@@ -1052,7 +1317,7 @@ At a time when global cultures are blending and local traditions are at risk of 
    <span class="close" onclick="toggleModal('signupModal')">&times;</span>
   
     <h2>Login</h2>
-    <a href="signup.html" class="fancy-btn">Register</a>
+    <a href="login.html" class="fancy-btn">Login</a>
   </div>
 </div>
 <div id="subscribeModal" class="modal">
@@ -1065,25 +1330,40 @@ At a time when global cultures are blending and local traditions are at risk of 
 </div>
 <script src="index.js"></script>
 <script>
+function toggleMenu() {
+  const menu = document.querySelector('.menu');
+  const hamburger = document.querySelector('.hamburger');
+  menu.classList.toggle('show');
+  hamburger.classList.toggle('active');
+}
+  if (menu.classList.contains('show')) {
+    hamburger.textContent = '✖';
+  } else {
+    hamburger.textContent = '☰';
+  }
+function closeMenu() {
+  const menu = document.querySelector('.menu');
+  const hamburger = document.querySelector('.hamburger');
+
+  menu.classList.remove('show');
+  hamburger.classList.remove('active');
+}
 console.log("BharatVerse loaded.");
 function toggleModal(id) {
   const modal = document.getElementById(id);
   modal.style.display = modal.style.display === "flex" ? "none" : "flex";
 }
-
 function signUp() {
   const name = document.getElementById('signup-name').value;
   const email = document.getElementById('signup-email').value;
   const password = document.getElementById('signup-password').value;
   alert(`Registered:\nName: ${name}\nEmail: ${email}`);
 }
-
 function signIn() {
   const email = document.getElementById('signin-email').value;
   const password = document.getElementById('signin-password').value;
   alert(`Logged in as: ${email}`);
 }
-
 function subscribePayment() {
   const email = document.getElementById('subscribe-email').value;
   alert(`Initiating ₹199 payment for: ${email}`);
@@ -1196,7 +1476,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
           
             const lazyLoadImages = document.querySelectorAll('.lazy-load');
-            
+        
             const lazyLoad = (target) => {
                 const io = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
